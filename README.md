@@ -1,7 +1,7 @@
 # Cube
 
 This library provides a set of classes and functions for crunching through the effects of moves on a 3x3 Rubik's cube.
-Pre-defined cube states and algorithms can be found in `app/resources`.
+Predefined cube states and algorithms can be found in `app/resources`.
 
 ## Terminology
 
