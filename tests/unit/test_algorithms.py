@@ -2,6 +2,7 @@ from app.concepts import concatenate
 from app.resources.algorithms import (
     anticlockwise_rotation,
     clockwise_rotation,
+    headlights_at_back,
     l_algorithm,
 )
 from app.resources.top_layer_states import TopLayerStates
@@ -55,3 +56,9 @@ def test_if_we_do_the_l_algorithm_six_times_we_have_done_nothing() -> None:
     initial_state = TopLayerStates.SOLVED
     final_state = concatenate(*([l_algorithm] * 6))(initial_state)
     assert initial_state == final_state
+
+
+def test_headlights_at_back() -> None:
+    initial_state = TopLayerStates.HEADLIGHTS_AT_BACK
+    final_state = headlights_at_back.result(initial_state)
+    assert final_state == TopLayerStates.SOLVED

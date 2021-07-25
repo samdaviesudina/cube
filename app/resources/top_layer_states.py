@@ -38,3 +38,12 @@ class TopLayerStates:
             Pieces.BACK_RIGHT: Positions.BACK_LEFT_LEFT,
         }
     )
+
+    HEADLIGHTS_AT_BACK = TopLayerState(
+        {
+            Pieces.FRONT_RIGHT: Positions.BACK_RIGHT_TOP,
+            Pieces.FRONT_LEFT: Positions.FRONT_LEFT_TOP,
+            Pieces.BACK_LEFT: Positions.FRONT_RIGHT_TOP,
+            Pieces.BACK_RIGHT: Positions.BACK_LEFT_TOP,
+        }
+    )
