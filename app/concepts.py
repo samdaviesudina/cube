@@ -55,10 +55,6 @@ class EffectOnPosition:
 
 @dataclass
 class OllState:
-    """
-    'OLL' stands for 'Orientation of the Last Layer'.
-    """
-
     positions: Set[Position]
 
     def __iter__(self) -> Generator[Position, None, None]:
@@ -78,10 +74,6 @@ class TopLayerState:
 
 @dataclass
 class OllAlgorithm:
-    """
-    'OLL' stands for 'Orientation of the Last Layer'.
-    """
-
     effects: Dict[Place, EffectOnPosition]
 
     def result(self, state: TopLayerState) -> TopLayerState:
@@ -95,10 +87,6 @@ class OllAlgorithm:
 
 @dataclass
 class PllAlgorithm:
-    """
-    'PLL' stands for 'Permutation of the Last Layer'.
-    """
-
     effects: Dict[Place, DirectionOfMovement]
 
     def result(self, state: TopLayerState) -> TopLayerState:
