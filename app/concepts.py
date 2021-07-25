@@ -72,8 +72,13 @@ class TopLayerState:
         return OllState({position for _, position in self})
 
 
+class Algorithm:
+    def result(self, state: TopLayerState) -> TopLayerState:
+        pass
+
+
 @dataclass
-class OllAlgorithm:
+class OllAlgorithm(Algorithm):
     effects: Dict[Place, EffectOnPosition]
 
     def result(self, state: TopLayerState) -> TopLayerState:
@@ -86,7 +91,7 @@ class OllAlgorithm:
 
 
 @dataclass
-class PllAlgorithm:
+class PllAlgorithm(Algorithm):
     effects: Dict[Place, DirectionOfMovement]
 
     def result(self, state: TopLayerState) -> TopLayerState:
@@ -101,7 +106,7 @@ class PllAlgorithm:
         )
 
 
-def concatenate(*algorithms: OllAlgorithm) -> Callable:
+def concatenate(*algorithms: Algorithm) -> Callable:
     def result(initial_state: TopLayerState) -> TopLayerState:
         running_result = initial_state
         for algorithm in algorithms:
