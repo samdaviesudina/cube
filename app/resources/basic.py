@@ -1,3 +1,5 @@
+from typing import Generator
+
 from app.concepts import (
     DirectionOfMovement,
     EffectOnPosition,
@@ -14,6 +16,10 @@ class Places:
     FRONT_LEFT = Place(1)
     BACK_LEFT = Place(2)
     BACK_RIGHT = Place(3)
+
+    @classmethod
+    def all(cls) -> Generator[Place, None, None]:
+        yield from (cls.FRONT_RIGHT, cls.FRONT_LEFT, cls.BACK_LEFT, cls.BACK_RIGHT)
 
 
 class Pieces:
@@ -77,12 +83,7 @@ class MannersOfMoving:
             place: {
                 o: o for o in (Orientations.TOP, Orientations.FRONT, Orientations.RIGHT)
             }
-            for place in (
-                Places.FRONT_RIGHT,
-                Places.FRONT_LEFT,
-                Places.BACK_LEFT,
-                Places.BACK_RIGHT,
-            )
+            for place in Places.all()
         }
     )
     ANTICLOCKWISE_ROTATION = MannerOfMoving(
@@ -90,12 +91,7 @@ class MannersOfMoving:
             place: {
                 o: o for o in (Orientations.TOP, Orientations.FRONT, Orientations.RIGHT)
             }
-            for place in (
-                Places.FRONT_RIGHT,
-                Places.FRONT_LEFT,
-                Places.BACK_LEFT,
-                Places.BACK_RIGHT,
-            )
+            for place in Places.all()
         }
     )
 
@@ -125,6 +121,15 @@ class DirectionsOfMovement:
             Places.BACK_RIGHT: Places.BACK_LEFT,
         }
     )
+    DOUBLE_TURN = DirectionOfMovement(
+        {
+            Places.FRONT_RIGHT: Places.BACK_LEFT,
+            Places.FRONT_LEFT: Places.BACK_RIGHT,
+            Places.BACK_LEFT: Places.FRONT_RIGHT,
+            Places.BACK_RIGHT: Places.FRONT_LEFT,
+        }
+    )
+    IDENTITY = DirectionOfMovement({place: place for place in Places.all()})
 
 
 class EffectsOnPosition:
